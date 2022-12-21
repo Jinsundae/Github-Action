@@ -2,11 +2,7 @@ name: Android CI
 
 on:
   schedule:
-    - cron: '5 11 * * *'
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+    - cron: '12 11 * * *'
 
 jobs:
   build:
