@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ "master" ]
   schedule:
-    - cron: '* 13 * * *'
+    - cron: '0 0 * * 1-5'
 
 jobs:
   
@@ -40,7 +40,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: app
-        path: app/build/outputs/apk/debug/app-debug.apk
+        path: app/build/outputs/apk/debug
     
     - name: Slack - Send Msg
       uses: 8398a7/action-slack@v3
@@ -51,12 +51,3 @@ jobs:
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_URL }}
       if: always()
-      
-    - name: Slack - Upload APK 
-      uses: MeilCli/slack-upload-file@v3
-      with: 
-        slack_token: ${{ secrets.SLACK_TOKEN }} 
-        channel_id: ${{ secrets.SLACK_CHANNEL }}
-        initial_comment: 'APK File Upload'
-        file_name: 'app-debug.apk'
-        file_path: 'app/build/outputs/apk/debug/app-debug.apk'
