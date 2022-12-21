@@ -51,3 +51,13 @@ jobs:
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_URL }}
       if: always()
+    
+    - name: Slack - Upload APK 
+      uses: MeilCli/slack-upload-file@v3
+      with: 
+        slack_token: ${{ secrets.SLACK_TOKEN }} 
+        channels: ${{ secrets.SLACK_CHANNEL }}
+        initial_comment: 'APK File Upload' 
+        file_type: 'apk' 
+        file_name: 'debug'
+        file_path: 'app/build/outputs/apk/debug'
