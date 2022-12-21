@@ -2,7 +2,8 @@ name: Android CI
 
 on:
   schedule:
-    - cron: '12 11 * * *'
+    - cron: '20 11 * * *'
+    - cron: '20 20 * * *'
 
 jobs:
   build:
