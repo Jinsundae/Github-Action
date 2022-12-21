@@ -40,7 +40,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: app
-        path: app/build/outputs/apk/debug
+        path: app/build/outputs/apk/debug/now.apk
     
     - name: Slack - Send Msg
       uses: 8398a7/action-slack@v3
@@ -58,5 +58,5 @@ jobs:
         slack_token: ${{ secrets.SLACK_TOKEN }} 
         channel_id: ${{ secrets.SLACK_CHANNEL }}
         initial_comment: 'APK File Upload'
-        file_name: 'app'
-        file_path: 'app/build/outputs/apk/debug'
+        file_name: 'now.apk'
+        file_path: 'app/build/outputs/apk/debug/now.apk'
