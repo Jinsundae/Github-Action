@@ -35,6 +35,16 @@ class CalculatorTest {
     }
 
     @Test
+    fun `API_KEY`() {
+        // Given
+        val x = BuildConfig.API_KEY
+        val y = "123456"
+
+        // Then
+        Truth.assertThat(x).isEqualTo(y)
+    }
+
+    @Test
     fun `subtraction function test`() {
         // Given
         val x = 4
