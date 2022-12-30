@@ -53,6 +53,12 @@ jobs:
     - name: Android Test Report
       uses: asadmansr/android-test-report-action@v1.2.0
       if: ${{ always() }}
+    
+    - name: Publish Unit Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v1
+      if: ${{ always() }}
+      with:
+        files: build/test-results/**/*.xml
 
     - name: Build debug APK
       run: ./gradlew assembleDebug --stacktrace
@@ -72,28 +78,3 @@ jobs:
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_URL }}
       if: always()
-    
-  
-  test:
-    runs-on: ubuntu-latest
-    steps:
-
-    - uses: actions/checkout@v3
-    - name: set up JDK 11
-      uses: actions/setup-java@v3
-      with:
-        java-version: '11'
-        distribution: 'temurin'
-        cache: gradle
-
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-    - uses: actions/checkout@v3
-
-    - name: Test with Gradle
-      run: ./gradlew --info test
-    - name: Publish Unit Test Results
-      uses: EnricoMi/publish-unit-test-result-action@v1
-      if: ${{ always() }}
-      with:
-        files: build/test-results/**/*.xml
